@@ -1,0 +1,95 @@
+.home{
+
+}
+.feature{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    &__box{
+        flex: 1 0 0;
+        -webkit-box-shadow: -14px -13px 59px -1px rgba(34, 60, 80, 0.12);
+        -moz-box-shadow: -14px -13px 59px -1px rgba(34, 60, 80, 0.12);
+        box-shadow: -14px -13px 59px -1px rgba(34, 60, 80, 0.12);
+        padding: 20px;
+        border-radius: 10px;
+    }
+    &__body{
+        display: flex;
+        align-items: center;
+    }
+    &__icon{
+        & i{
+            font-size: 64px;
+            color: rgb(7, 91, 133);
+        }
+    }
+    &__info{
+        flex: 1 0 0;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    &__title{
+        font-size: 18px;
+        color: rgb(90, 85, 85);
+    }
+    &__number{
+        margin: 10px 5px 10px;
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff;
+    }
+    &__footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__notif{
+        font-size: 12px;
+        background: rgb(105, 246, 155);
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        color: #fff;
+    }
+    &__text{
+        margin-right: 15px;
+        font-size: 14px;
+        color: rgb(32, 47, 145);
+    }
+}
+.success{
+    background: rgb(2,36,0);
+    background: linear-gradient(90deg, rgba(2,36,0,0.8743872549019608) 0%, rgba(18,201,97,0.32816876750700286) 0%);
+}
+.primary{
+    background: rgb(2,36,0);
+    background: linear-gradient(90deg, rgba(2,36,0,0.8743872549019608) 0%, rgba(78,194,218,0.32816876750700286) 0%);
+}
+.info{
+    background: rgb(2,36,0);
+    background: linear-gradient(90deg, rgba(2,36,0,0.8743872549019608) 0%, rgba(215,218,78,0.32816876750700286) 0%);
+}
+.danger{
+    background: rgb(2,36,0);
+    background: linear-gradient(90deg, rgba(2,36,0,0.8743872549019608) 0%, rgba(236,26,19,0.2665441176470589) 0%);
+}
+
+.chart{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    &__bar{
+        background: #fff;
+        border-radius: 10px;
+        width: 70%;
+        padding: 20px;
+    }
+    
+    &__pie{
+        background: #fff;
+        border-radius: 10px;
+        width: 35%;
+        padding: 20px;
+    }
+}

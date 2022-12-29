@@ -1,0 +1,56 @@
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    max-height: 400px;
+    margin-bottom: 15px;
+    &__actions{
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+.action{
+    &__item{
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+    }
+    &__title{
+        margin-right: 5px;
+        font-size: 12px;
+    }
+    &__input{
+        max-width: 120px;
+    }
+}
+
+.upload-demo{
+    display: flex;
+}
+
+.ml-10{
+    margin-left: 10px;
+}
+
+.mr-25{
+    margin-right: 50px;
+}
+.init{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    &__body{
+        flex: 1 1 100%;
+    }
+    &__footer{
+        display: flex;
+        justify-content: end;
+    }
+    &__unactive{
+        padding-bottom: 5px;
+        & .btns{
+             margin-right: 10px;
+        }
+    }
+}
