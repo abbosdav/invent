@@ -9,8 +9,36 @@
         font-weight: 600;
         color: rgb(114, 111, 111);
     }
-    &__fields{
+    &__steps{
         max-width: 600px;
-        margin: 30px auto;
+        margin: 10px auto 0px auto;
+    }
+}
+.icon{
+    position: relative;
+    &__collection{
+        padding: 10px;
+        background: #fff;
+        -webkit-box-shadow: 0px 3px 17px -7px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 0px 3px 17px -7px rgba(34, 60, 80, 0.2);
+        box-shadow: 0px 3px 17px -7px rgba(34, 60, 80, 0.2);
+        border-radius: 5px;
+        top: -10px;
+        left: -3px;
+        position: absolute;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto  auto auto auto auto auto auto auto;
+        align-items: center;
+        z-index: 15;
+    }
+    &__item{
+        flex: 0 0 25%;
+        font-size: 30px;
+        padding: 10px;
+        &:hover{
+            border-radius: 5px;
+            cursor: pointer;
+            background: rgb(208, 218, 231);
+        }
     }
 }

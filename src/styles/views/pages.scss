@@ -1,0 +1,17 @@
+.pages{
+    background-color: rgb(249, 249, 249);
+    padding: 20px;
+    border-radius: 20px;
+    flex: 1 1 0;
+    &__header{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.example-showcase .el-dropdown-link {
+    cursor: pointer;
+    color: var(--el-color-primary);
+    display: flex;
+    align-items: center;
+  }

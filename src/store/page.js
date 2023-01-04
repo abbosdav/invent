@@ -50,7 +50,9 @@ export const page = {
             context.dispatch('getAxios', {url:'page', query: payload})
             .then(res =>{
                 console.log(res.data);
-                context.commit('setLoader', true)
+                setTimeout(()=>{
+                    context.commit('setLoader', false)
+                },500 )
                 context.commit('setPages', res.data)
                 context.commit('setMenus', res.data)
                 

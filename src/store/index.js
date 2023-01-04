@@ -46,6 +46,7 @@ export default createStore({
 
   mutations: {
     setModal(state, payload){
+      console.log(payload);
       state.modal = payload
     },
 

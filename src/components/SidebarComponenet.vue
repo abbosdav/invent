@@ -4,17 +4,22 @@
         <h3>LOGO COMPANY</h3>
         <el-divider/>
         <div class="aside__menu menu">
-            <div class="menu__list">
+            <ul class="menu__list">
                 <li class="menu__item" v-for="(item) in menus" @click="toRoure(item._id)" :key="item._id">
+                    
                     <el-icon><component :is="item.icon"/></el-icon>
+                    <span>
                         {{ item.name }}
+                    </span>
                 </li>
-            </div>
+            </ul>
             <div class="menu__add">
                 <el-divider/>
                 <router-link to="/settings" class="settings__link">
                     <el-icon><plus/></el-icon>
-                     New page
+                    <span>
+                        New page
+                    </span>
                 </router-link> 
             </div>
         </div>

@@ -71,6 +71,29 @@
     }
 }
 
+.menu{
+    &__item{
+        &:hover{
+            cursor: pointer;
+            color: rgb(61, 95, 207);
+            transition: color 0.5s ease;
+        }
+
+        // list-style-type: none;
+        display: flex;
+        align-items: center;
+        padding: 5px 0px;
+        margin: 5px 0px;
+        & span{
+            padding-left: 10px;
+            font-size: 15px;
+        }
+        & .el-icon{
+            font-size: 18px;
+        }
+    }
+}
+
 .el-aside.sidebar{
     overflow: hidden !important;
     width: var(--el-aside-width,260px) !important;
