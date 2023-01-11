@@ -14,7 +14,6 @@
                 </li>
             </ul>
             <div class="menu__add">
-                <el-divider/>
                 <router-link to="/settings" class="settings__link">
                     <el-icon><plus/></el-icon>
                     <span>
@@ -34,7 +33,8 @@
     import { onMounted, ref } from 'vue';
     import store from '@/store';
     import { computed } from '@vue/reactivity';
-import router from '@/router';
+    import router from '@/router';
+    
 
 
 

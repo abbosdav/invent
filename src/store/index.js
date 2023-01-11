@@ -56,6 +56,9 @@ export default createStore({
   },
 
   actions: {
+    setModal(context,payload){
+      context.commit('setModal',payload)
+    }
   },
   modules:{
     modulesList, 

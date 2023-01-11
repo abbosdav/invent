@@ -30,8 +30,8 @@ export const helpers = {
             })
         },
 
-        deleteAxios(context,payload){
-            return axios.delete(`${context.getters.url}/${payload}`, {
+        deleteAxios(context, payload){
+            return axios.delete(`${context.getters.url}/${payload.url}`, {
                 headers:{'Content-Type': 'application/json','Authorization' : cookie.get('token')}})
             .catch(e => {
                 ElNotification({

@@ -52,6 +52,17 @@
                                 autocomplete="off"
                             />
                     </el-form-item>
+                    <el-form-item
+                        label="Sahifa textini kiriting."
+                        prop="text"
+                        :rules="[{ required: true, message: 'Sahifa nomi to\'ldirilmagan' }]"
+                        >
+                            <el-input
+                                v-model="page.text"
+                                type="text"
+                                autocomplete="off"
+                            />
+                    </el-form-item>
                     <!-- <el-form-item
                     label="Sahifa slug nomi (lotin harflarida)."
                     prop="slug"
@@ -88,142 +99,173 @@
                                 autocomplete="off"
                             />
                     </el-form-item>
-
-                    <el-form-item>
-                        <el-button type="primary" @click="next">Next</el-button>
-                    </el-form-item>
                 </div>
 
+                <div class="settings__fields">
+                    <div class="stemp__two" v-show="active == 1">
+                        <el-row :gutter="20" v-show="active == 1" v-for="(item ,index) in page.fields" :key="index">
+                            <el-col :span="5">
+                                <el-form-item
+                                label="Maydon nomi:"
+                                >
+                                    <el-input
+                                        v-model="item.label"
+                                        type="text"
+                                        autocomplete="off"
+                                    />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="5">
+                                <el-form-item
+                                label="Maydon o'zgaruvchisi:"
+                                >
+                                    <el-input
+                                        v-model.number="item.slug"
+                                        type="text"
+                                        autocomplete="off"
+                                    />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="6">
+                                <el-form-item
+                                label="Maydon tipi:"
+                                >
+                                    <el-select v-model="item.types" filterable placeholder="Select">
+                                        <el-option
+                                        v-for="item in types"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                        />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="6">
+                                <el-form-item
+                                    v-show="item.types == 1"
+                                    label="Placeholder:"
+                                >
+                                    <el-input
+                                        v-model="item.place"
+                                        type="text"
+                                        autocomplete="off"
+                                    />
+                                </el-form-item>
+                                <el-form-item
+                                    v-show="item.types == 2"
+                                    label="Source data:"
+                                >
+                                    <el-select v-model="item.selectId" filterable placeholder="Select">
+                                        <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                        />
+                                    </el-select>
+                                </el-form-item>
 
-                <div class="stemp__two" v-show="active == 1">
-                    <el-row :gutter="20">
-                    <el-col :span="6">
-                        <el-form-item
-                        label="Maydon nomi:"
-                        >
-                            <el-input
-                                v-model.number="page.fieldName"
-                                type="text"
-                                autocomplete="off"
-                            />
-                        </el-form-item></el-col>
-                    <el-col :span="6">
-                        <el-form-item
-                        label="Maydon o'zgaruvchisi:"
-                        >
-                            <el-input
-                                v-model.number="page.fieldName"
-                                type="text"
-                                autocomplete="off"
-                            />
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item
-                        label="Maydon tipi:"
-                        >
-                            <el-select v-model="page.fieldType" filterable placeholder="Select">
-                                <el-option
-                                v-for="item in types"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value"
-                                />
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item
-                            v-show="page.fieldType == 1"
-                            label="Placeholder:"
-                        >
-                            <el-input
-                                v-model="page.fieldPlaceholder"
-                                type="text"
-                                autocomplete="off"
-                            />
-                        </el-form-item>
-                        <el-form-item
-                            v-show="page.fieldType == 2"
-                            label="Source data:"
-                        >
-                            <el-select v-model="value" filterable placeholder="Select">
-                                <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value"
-                                />
-                            </el-select>
-                        </el-form-item>
+                                <el-form-item
+                                    v-show="item.types == 3"
+                                    label="Radio variantlari:"
+                                >
+                                    <el-select
+                                        v-model="item.radioVal"
+                                        multiple
+                                        filterable
+                                        allow-create
+                                        default-first-option
+                                        :reserve-keyword="false"
+                                        placeholder="Choose tags for your article"
+                                    >
+                                    </el-select>
+                                </el-form-item>
 
-                        <el-form-item
-                            v-show="page.fieldType == 3"
-                            label="Radio variantlari:"
-                        >
-                            <el-select
-                                v-model="page.fieldRadio"
-                                multiple
-                                filterable
-                                allow-create
-                                default-first-option
-                                :reserve-keyword="false"
-                                placeholder="Choose tags for your article"
-                            >
-                            </el-select>
-                        </el-form-item>
-
-                        <el-form-item
-                            v-show="page.fieldType == 4"
-                            label="Checkbox qiymatlari:"
-                        >
-                            <el-select
-                                v-model="page.fieldCheck"
-                                multiple
-                                filterable
-                                allow-create
-                                default-first-option
-                                :reserve-keyword="false"
-                                placeholder="Choose tags for your article"
-                            >
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item
-                            v-show="page.fieldType == 5"
-                            label="Switch:"
-                        >
-                        <el-switch
-                            v-model="page.fieldSwitch"
-                            class="mb-2"
-                            active-text="Active"
-                            inactive-text="Unactive"
-                        />
-                        
-                        </el-form-item>
-                        <el-form-item
-                            v-show="page.fieldType == 6"
-                            label="Placeholder:"
-                        >
-                        <el-input
-                            v-model="page.fieldArea"
-                            type="text"
-                            autocomplete="off"
-                        />
-                        
-                        </el-form-item>
-                    </el-col>
-                </el-row>
+                                <el-form-item
+                                    v-show="item.types == 4"
+                                    label="Checkbox qiymatlari:"
+                                >
+                                    <el-select
+                                        v-model="item.checkVal"
+                                        multiple
+                                        filterable
+                                        allow-create
+                                        default-first-option
+                                        :reserve-keyword="false"
+                                        placeholder="Choose tags for your article"
+                                    >
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item
+                                    v-show="item.types == 5"
+                                    label="Switch:"
+                                >
+                                    <el-switch
+                                        v-model="item.swichVal"
+                                        class="mb-2"
+                                        active-text="Active"
+                                        inactive-text="Unactive"
+                                    />
+                                </el-form-item>
+                                <el-form-item
+                                    v-show="item.types == 6"
+                                    label="Placeholder:"
+                                >
+                                    <el-input
+                                        v-model="item.areaVal"
+                                        type="text"
+                                        autocomplete="off"
+                                    />
+                                </el-form-item>
+                                <el-form-item
+                                    v-show="item.types == 7"
+                                    label="Placeholder:"
+                                >
+                                    <el-date-picker
+                                    v-model="item.dateVal"
+                                    type="date"
+                                    placeholder="Pick a date"
+                                    style="width: 100%"
+                                    />
+                                </el-form-item>
+                                <el-form-item
+                                    v-show="item.types == 8"
+                                    label="Placeholder:"
+                                >
+                                    <el-upload
+                                        class="upload-demo"
+                                        drag
+                                        action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+                                        multiple
+                                    >
+                                        <div class="el-upload__text">
+                                        Drop file here or <em>click to upload</em>
+                                        </div>
+                                    </el-upload>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="2">
+                                <el-form-item
+                                label="Delete"
+                                >
+                                <el-button type="danger" @click="removeField(index)">Remove</el-button>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </div>
                     <el-form-item>
-                        <el-button type="primary" @click="next">Next</el-button>
+                        <el-button v-if="active == 1" type="success" @click="addField">Add field</el-button>
+                        <el-button type="primary" v-if="active != 2" @click="next">Next</el-button>
                     </el-form-item>
                 </div>
                 <div class="stemp__two" v-show="active == 2">
-                    stemp three
+                   <h1>All info checked</h1>
+                    <br>
+                    <br>
                     <el-form-item>
                         <el-button type="success" @click="submitForm(pageRef)">Submit</el-button>
                     </el-form-item>
                 </div>
-                
             </el-form>
         </div>  
     </div>
@@ -289,7 +331,6 @@ const icons = ['menu','Plus', 'minus',
  'setting',
   'house', 
   'CirclePlus',
-
 ]
 
 const next = () =>{
@@ -306,10 +347,15 @@ const menus = computed({
     })
 
 
+const field = {label: '', types: 1}
 
 const pageRef = ref(null)
-const page = reactive({parent: '',  icon: 'Menu', fieldType: 1, fieldRadio:[]})
-// const err = ref("")
+
+const page = reactive({
+    parent: '',
+    icon: 'Menu',
+    fields: [{...field}],
+})
 
 // const toggle = (val)=>{
 //   store.commit('setModal', val)
@@ -325,10 +371,11 @@ const types = [
     {label: 'Checkbox', value: 4},
     {label: 'Switch', value: 5},
     {label: 'Textarea', value: 6},
+    {label: 'Date picker', value: 7},
+    {label: 'Upload', value: 8}
 ]
 
 // Select uchun option
-const value = ref('')
 const options = [
   {
     value: 'Option1',
@@ -351,16 +398,22 @@ const options = [
     label: 'Option5',
   },
 ]
+
 // Select optionlari
+const removeField = (index)=>{
+    page.fields.splice(index, 1)
+}
+
+const addField = ()=>{
+    page.fields.push({...field})
+}
 
 const upIcon = (val)=>{
     page.icon = val
     icon_state.value = false
-    console.log(page.icon);
 }
 
 const submitForm = async (formEl)=>{
-    console.log(formEl)
     if (!formEl) return
         await formEl.validate((valid, fields) => {
             if (valid) {
